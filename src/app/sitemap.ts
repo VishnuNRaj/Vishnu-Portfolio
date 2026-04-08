@@ -3,17 +3,16 @@ import type { MetadataRoute } from "next";
 import { env } from "@/lib/server";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const rootParams = {
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 1,
+  };
 
   return [
-    "",
-    "/projects",
-    "/experience",
-    "/education",
-  ].map((path) => ({
-    url: `${env.APP_URL}${path}`,
-    lastModified: now,
-    changeFrequency: path === "" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : 0.8,
-  }));
+    { url: env.APP_URL, ...rootParams },
+    { url: `${env.APP_URL}/projects`, ...rootParams, priority: 0.9 },
+    { url: `${env.APP_URL}/experience`, ...rootParams, priority: 0.9 },
+    { url: `${env.APP_URL}/education`, ...rootParams, priority: 0.8 },
+  ];
 }

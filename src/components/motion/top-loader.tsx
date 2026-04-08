@@ -1,9 +1,9 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export function TopLoader() {
+function TopLoaderInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [progress, setProgress] = useState(0);
@@ -33,7 +33,7 @@ export function TopLoader() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-x-0 top-0 z-[100] h-1 overflow-hidden"
+      className="pointer-events-none fixed inset-x-0 top-0 z-100 h-1 overflow-hidden"
     >
       <div
         className="h-full origin-left rounded-full bg-[linear-gradient(90deg,#f08b57_0%,#f4d1a7_55%,#fff7eb_100%)] shadow-[0_0_24px_rgba(240,139,87,0.55)] transition-[transform,opacity] duration-500 ease-out"
@@ -45,3 +45,12 @@ export function TopLoader() {
     </div>
   );
 }
+
+export function TopLoader() {
+  return (
+    <Suspense fallback={null}>
+      <TopLoaderInner />
+    </Suspense>
+  );
+}
+

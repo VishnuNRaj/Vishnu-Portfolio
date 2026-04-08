@@ -20,9 +20,15 @@ const optionalEmail = z.preprocess((value) => {
 
 const envSchema = z.object({
   APP_URL: z.string().url().default("http://localhost:3000"),
-  PORTFOLIO_CONTACT_EMAIL: z.string().email().default("vishnu8240.achu@gmail.com"),
+  PORTFOLIO_CONTACT_EMAIL: z
+    .string()
+    .email()
+    .default("vishnu8240.achu@gmail.com"),
   ADMIN_CONTACT_EMAIL: z.string().email().default("vishnu8240.achu@gmail.com"),
-  ADMIN_ACCESS_SECRET: z.string().min(16).default("vishnu-portfolio-admin-secret"),
+  ADMIN_ACCESS_SECRET: z
+    .string()
+    .min(16)
+    .default("vishnu-n-raj-portfolio-admin-secret"),
   MILVUS_ENABLED: z
     .enum(["true", "false"])
     .default("false")

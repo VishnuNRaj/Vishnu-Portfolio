@@ -56,7 +56,7 @@ export async function PortfolioPage() {
           data-float
         />
         <div
-          className="pointer-events-none absolute right-[8%] top-[18rem] h-48 w-48 rounded-full bg-accent-secondary/18 blur-[110px]"
+          className="pointer-events-none absolute right-[8%] top-72 h-48 w-48 rounded-full bg-accent-secondary/18 blur-[110px]"
           data-float
         />
         <div
@@ -88,7 +88,7 @@ export async function PortfolioPage() {
                     className="max-w-5xl font-display text-[clamp(3.8rem,11vw,8.3rem)] leading-[0.88] font-extrabold tracking-[-0.08em]"
                     data-stagger-item
                   >
-                    Building
+                    I build
                     <span className="text-gradient block">indigo-grade products</span>
                     for teams that need speed and structure.
                   </h1>
@@ -113,7 +113,7 @@ export async function PortfolioPage() {
                   </Link>
                 </div>
                 <div
-                  className="grid gap-4 rounded-[2rem] border border-line-strong bg-card/70 p-5 sm:grid-cols-3"
+                  className="grid gap-4 rounded-4xl border border-line-strong bg-card/70 p-5 sm:grid-cols-3"
                   data-stagger-item
                 >
                   {profile.metrics.map((metric) => (
@@ -189,22 +189,6 @@ export async function PortfolioPage() {
                   </div>
                 </SurfaceCard>
 
-                <SurfaceCard className="glass-panel aurora-border relative p-6 sm:p-7" data-reveal>
-                  <div className="grid gap-4 sm:grid-cols-[auto_1fr] sm:items-center">
-                    <div className="flex size-12 items-center justify-center rounded-2xl bg-accent-soft text-accent">
-                      <Sparkles className="size-5" />
-                    </div>
-                    <div>
-                      <p className="font-display text-xl font-extrabold tracking-[-0.04em]">
-                        More visible motion
-                      </p>
-                      <p className="mt-2 text-sm leading-7 text-muted">
-                        Scroll reveals are now stronger, the hero has hover-brightened
-                        square cells, and the overall layout is split into cleaner sections.
-                      </p>
-                    </div>
-                  </div>
-                </SurfaceCard>
               </div>
             </div>
           </section>
@@ -213,8 +197,8 @@ export async function PortfolioPage() {
             <div className="mx-auto grid max-w-7xl gap-8 px-6 sm:px-8 md:grid-cols-[0.9fr_1.1fr]">
               <div data-reveal>
                 <SectionHeading
-                  eyebrow="About"
-                  title="Production-minded engineering with visual clarity."
+                  eyebrow="About Me"
+                  title="I combine production-minded engineering with visual clarity."
                   description={profile.objective}
                 />
               </div>
@@ -223,12 +207,12 @@ export async function PortfolioPage() {
                 data-stagger-group
               >
                 <p data-stagger-item>
-                  Vishnu works across modern JavaScript ecosystems with a strong lean
+                  I work across modern JavaScript ecosystems with a strong lean
                   toward Node.js backends, scalable APIs, and platform thinking that
                   keeps features maintainable after launch.
                 </p>
                 <p data-stagger-item>
-                  The portfolio spans commerce, creator systems, consultation products,
+                  My portfolio spans commerce, creator systems, consultation products,
                   encrypted communication, and realtime video experiences with a focus
                   on shipping quickly without losing system clarity.
                 </p>
@@ -239,9 +223,9 @@ export async function PortfolioPage() {
           <section id="projects" className="py-24 sm:py-28">
             <div className="mx-auto max-w-7xl space-y-10 px-6 sm:px-8">
               <SectionHeading
-                eyebrow="Highlighted Projects"
-                title="Selected work across company builds, freelance systems, and original products."
-                description="A tighter project rail with stronger motion and the new indigo surface system."
+                eyebrow="My Projects"
+                title="I have built products across company platforms, freelance systems, and original ideas."
+                description="Selected work highlighting backend architecture and frontend execution."
               />
               <div
                 className="mask-fade flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
@@ -294,9 +278,9 @@ export async function PortfolioPage() {
           <section className="bg-card/35 py-24 sm:py-28">
             <div className="mx-auto max-w-7xl space-y-10 px-6 sm:px-8">
               <SectionHeading
-                eyebrow="Capabilities"
-                title="Frontend polish backed by strong backend judgment."
-                description="The strongest work here comes from treating APIs, data models, delivery, and user experience as one system."
+                eyebrow="My Capabilities"
+                title="I deliver frontend polish backed by strong backend judgment."
+                description="My strongest work comes from treating APIs, data models, delivery, and user experience as one cohesive system."
               />
               <div className="grid gap-6 md:grid-cols-3" data-stagger-group>
                 {profile.capabilities.map((capability, index) => {
@@ -331,22 +315,11 @@ export async function PortfolioPage() {
 
           <section id="experience" className="py-24 sm:py-28">
             <div className="mx-auto max-w-7xl space-y-10 px-6 sm:px-8">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <SectionHeading
-                  eyebrow="Experience"
-                  title="A cleaner timeline that reads faster and feels more deliberate."
-                  description="The experience cards are simplified, stack chips are removed, and the motion is easier to notice while scrolling."
-                />
-                <SurfaceCard className="glass-panel max-w-xl p-6" data-reveal>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-accent">
-                    Scroll behavior
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-muted">
-                    GSAP now drives stronger reveal, blur-to-sharp entry, stagger timing,
-                    parallax drift, floating ambient lights, and timeline stripe growth.
-                  </p>
-                </SurfaceCard>
-              </div>
+              <SectionHeading
+                eyebrow="My Experience"
+                title="I have contributed to fast-moving teams and scalable products."
+                description="A professional timeline summarizing my engineering roles and impact."
+              />
               <ExperienceTimeline
                 items={experience.items}
                 compact
@@ -359,9 +332,9 @@ export async function PortfolioPage() {
           <section id="education" className="bg-card/35 py-24 sm:py-28">
             <div className="mx-auto max-w-7xl space-y-10 px-6 sm:px-8">
               <SectionHeading
-                eyebrow="Education"
-                title="Education is separated out so the layout stays balanced."
-                description="This avoids the uneven column height that came from combining education and experience in one block."
+                eyebrow="My Education"
+                title="I hold a background in Computer Applications."
+                description="My formal academic training and structured certifications."
               />
               <EducationGrid items={education.items} />
             </div>
@@ -370,8 +343,8 @@ export async function PortfolioPage() {
           <section id="skills" className="py-24 sm:py-28">
             <div className="mx-auto max-w-7xl space-y-10 px-6 sm:px-8">
               <SectionHeading
-                eyebrow="Skills"
-                title="Skill groups now live in their own section, updated from the resume."
+                eyebrow="My Skills"
+                title="I am proficient across a wide stack of modern technologies."
                 description="Grouped across core expertise, languages, frontend, backend, realtime systems, payments, infrastructure, and tooling."
               />
               <SkillGroupsGrid groups={profile.skillGroups} />
@@ -381,9 +354,9 @@ export async function PortfolioPage() {
           <section id="contact" className="pb-24 sm:pb-28">
             <div className="mx-auto max-w-7xl space-y-8 px-6 sm:px-8">
               <SectionHeading
-                eyebrow="Contact"
-                title="Reach out for product work, freelance builds, or backend-heavy collaborations."
-                description="The contact API stores submissions, sends an acknowledgement email when mail env vars are configured, and can issue a one-day admin key for the configured admin email."
+                eyebrow="Contact Me"
+                title="I am open to product work, freelance builds, and backend-heavy collaborations."
+                description="Send me a message below and I will get back to you shortly."
               />
               <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
                 <SurfaceCard

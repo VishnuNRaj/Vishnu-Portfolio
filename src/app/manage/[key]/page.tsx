@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { AdminCreateForms, PaginationNav } from "@/components/portfolio";
+import { AdminCreateForms, ProjectInfiniteList, ExperienceInfiniteList, EducationInfiniteList, ContactInfiniteList, AuthKeyInfiniteList } from "@/components/portfolio";
 import { Button, SectionHeading, SurfaceCard } from "@/components/ui";
 import { parsePositiveInt } from "@/lib";
 import {
@@ -97,16 +97,12 @@ export default async function ManagePage({ params, searchParams }: PageProps) {
         <SurfaceCard className="p-8">
           <div className="space-y-5">
             <h2 className="text-2xl font-semibold tracking-[-0.05em]">Projects</h2>
-            {projects.items.map((project) => (
-              <div key={project.id} className="border-b border-line pb-4 last:border-b-0">
-                <p className="font-medium">{project.projectName}</p>
-                <p className="text-sm text-muted">{project.projectType}</p>
-              </div>
-            ))}
-            <PaginationNav
-              page={projects.page}
+            <ProjectInfiniteList
+              initialItems={projects.items}
+              initialPage={projects.page}
               totalPages={projects.totalPages}
-              buildHref={(page) => `/manage/${key}?projectPage=${page}&experiencePage=${experiencePage}&educationPage=${educationPage}&contactPage=${contactPage}&authPage=${authPage}`}
+              variant="compact"
+              pageSize={4}
             />
           </div>
         </SurfaceCard>
@@ -114,16 +110,12 @@ export default async function ManagePage({ params, searchParams }: PageProps) {
         <SurfaceCard className="p-8">
           <div className="space-y-5">
             <h2 className="text-2xl font-semibold tracking-[-0.05em]">Experience</h2>
-            {experience.items.map((item) => (
-              <div key={item.id} className="border-b border-line pb-4 last:border-b-0">
-                <p className="font-medium">{item.jobRole}</p>
-                <p className="text-sm text-muted">{item.companyName}</p>
-              </div>
-            ))}
-            <PaginationNav
-              page={experience.page}
+            <ExperienceInfiniteList
+              initialItems={experience.items}
+              initialPage={experience.page}
               totalPages={experience.totalPages}
-              buildHref={(page) => `/manage/${key}?projectPage=${projectPage}&experiencePage=${page}&educationPage=${educationPage}&contactPage=${contactPage}&authPage=${authPage}`}
+              variant="compact"
+              pageSize={4}
             />
           </div>
         </SurfaceCard>
@@ -131,16 +123,12 @@ export default async function ManagePage({ params, searchParams }: PageProps) {
         <SurfaceCard className="p-8">
           <div className="space-y-5">
             <h2 className="text-2xl font-semibold tracking-[-0.05em]">Education</h2>
-            {education.items.map((item) => (
-              <div key={item.id} className="border-b border-line pb-4 last:border-b-0">
-                <p className="font-medium">{item.course}</p>
-                <p className="text-sm text-muted">{item.collegeName}</p>
-              </div>
-            ))}
-            <PaginationNav
-              page={education.page}
+            <EducationInfiniteList
+              initialItems={education.items}
+              initialPage={education.page}
               totalPages={education.totalPages}
-              buildHref={(page) => `/manage/${key}?projectPage=${projectPage}&experiencePage=${experiencePage}&educationPage=${page}&contactPage=${contactPage}&authPage=${authPage}`}
+              variant="compact"
+              pageSize={4}
             />
           </div>
         </SurfaceCard>
@@ -148,18 +136,11 @@ export default async function ManagePage({ params, searchParams }: PageProps) {
         <SurfaceCard className="p-8">
           <div className="space-y-5">
             <h2 className="text-2xl font-semibold tracking-[-0.05em]">Contacts</h2>
-            {contacts.items.map((item) => (
-              <div key={item.id} className="border-b border-line pb-4 last:border-b-0">
-                <p className="font-medium">
-                  {item.firstName} {item.lastName}
-                </p>
-                <p className="text-sm text-muted">{item.email}</p>
-              </div>
-            ))}
-            <PaginationNav
-              page={contacts.page}
+            <ContactInfiniteList
+              initialItems={contacts.items}
+              initialPage={contacts.page}
               totalPages={contacts.totalPages}
-              buildHref={(page) => `/manage/${key}?projectPage=${projectPage}&experiencePage=${experiencePage}&educationPage=${educationPage}&contactPage=${page}&authPage=${authPage}`}
+              pageSize={5}
             />
           </div>
         </SurfaceCard>
@@ -167,19 +148,11 @@ export default async function ManagePage({ params, searchParams }: PageProps) {
         <SurfaceCard className="p-8 xl:col-span-2">
           <div className="space-y-5">
             <h2 className="text-2xl font-semibold tracking-[-0.05em]">Auth keys</h2>
-            {authKeys.items.map((item) => (
-              <div key={item.id} className="grid gap-2 border-b border-line pb-4 last:border-b-0">
-                <p className="font-medium">{item.email}</p>
-                <p className="break-all text-sm text-muted">{item.authKey}</p>
-                <p className="text-sm text-foreground/80">
-                  Expires {new Date(item.expiresAt).toLocaleString()}
-                </p>
-              </div>
-            ))}
-            <PaginationNav
-              page={authKeys.page}
+            <AuthKeyInfiniteList
+              initialItems={authKeys.items}
+              initialPage={authKeys.page}
               totalPages={authKeys.totalPages}
-              buildHref={(page) => `/manage/${key}?projectPage=${projectPage}&experiencePage=${experiencePage}&educationPage=${educationPage}&contactPage=${contactPage}&authPage=${page}`}
+              pageSize={5}
             />
           </div>
         </SurfaceCard>

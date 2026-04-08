@@ -13,7 +13,7 @@ variable "vercel_team_id" {
 variable "project_name" {
   description = "Vercel project name"
   type        = string
-  default     = "vishnu-portfolio"
+  default     = "vishnu-n-raj-portfolio"
 }
 
 variable "project_directory" {
