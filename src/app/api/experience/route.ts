@@ -1,11 +1,9 @@
 import {
   createExperience,
-  ensureMilvusCollections,
   experienceInputSchema,
   listExperience,
   parsePositiveInt,
   requireAuthKey,
-  syncPortfolioToMilvus,
 } from "@/lib/server";
 
 export async function GET(request: Request) {
@@ -35,8 +33,7 @@ export async function POST(request: Request) {
 
   const payload = payloadResult.data;
   const experience = await createExperience(payload);
-  await ensureMilvusCollections();
-  await syncPortfolioToMilvus();
+
 
   return Response.json({ experience });
 }

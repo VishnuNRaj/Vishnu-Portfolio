@@ -1,11 +1,9 @@
 import {
   createProject,
-  ensureMilvusCollections,
   listProjects,
   parsePositiveInt,
   projectInputSchema,
   requireAuthKey,
-  syncPortfolioToMilvus,
 } from "@/lib/server";
 
 export async function GET(request: Request) {
@@ -36,8 +34,7 @@ export async function POST(request: Request) {
 
   const payload = payloadResult.data;
   const project = await createProject(payload);
-  await ensureMilvusCollections();
-  await syncPortfolioToMilvus();
+
 
   return Response.json({ project });
 }
