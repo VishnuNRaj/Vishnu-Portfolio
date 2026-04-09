@@ -25,7 +25,6 @@ import {
   listSkills,
   listSkillGroups,
 } from "@/lib/server";
-import Image from "next/image";
 
 const capabilityIcons = [Code2, Database, Cloud];
 
@@ -119,21 +118,6 @@ export async function PortfolioPage() {
                     </Button>
                   </Link>
                 </div>
-                <div
-                  className="grid gap-4 rounded-4xl border border-line-strong bg-card/70 p-5 sm:grid-cols-3"
-                  data-stagger-item
-                >
-                  {profile.metrics.map((metric) => (
-                    <div key={metric.label} className="space-y-1">
-                      <p className="text-xs uppercase tracking-[0.24em] text-muted">
-                        {metric.label}
-                      </p>
-                      <p className="text-lg font-semibold tracking-[-0.04em] text-foreground">
-                        {metric.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               </div>
 
               <div className="grid gap-6 lg:pb-4">
@@ -156,7 +140,7 @@ export async function PortfolioPage() {
                         <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-accent">
                           System profile
                         </p>
-                        <p className="mt-2 text-sm text-muted">
+                        <p className="mt-2 text-sm text-muted-strong">
                           Product engineering across backend, realtime, and
                           delivery.
                         </p>
@@ -185,7 +169,7 @@ export async function PortfolioPage() {
                         return (
                           <div
                             key={skill.id}
-                            className="flex items-center gap-4 border border-line rounded-3xl bg-background/30 p-4"
+                            className="flex items-center gap-4 border border-line rounded-3xl bg-white/5 p-4 backdrop-blur-sm"
                           >
                             <div className="flex size-10 items-center justify-center rounded-2xl bg-accent-soft text-accent overflow-hidden">
                               {isUrl ? (
@@ -204,7 +188,7 @@ export async function PortfolioPage() {
                               <p className="font-display text-lg font-bold tracking-[-0.03em] text-foreground">
                                 {skill.name}
                               </p>
-                              <p className="text-sm text-muted">
+                              <p className="text-sm text-muted-strong">
                                 {skillGroups.items.find(
                                   (g) => g.id === skill.groupId,
                                 )?.title || "General"}
@@ -247,7 +231,7 @@ export async function PortfolioPage() {
                 />
               </div>
               <div
-                className="grid gap-6 text-base leading-8 text-muted sm:grid-cols-2"
+                className="grid gap-6 text-base leading-8 text-muted-strong sm:grid-cols-2"
                 data-stagger-group
               >
                 <p data-stagger-item>
@@ -273,7 +257,7 @@ export async function PortfolioPage() {
                 description="Selected work highlighting backend architecture and frontend execution."
               />
               <div
-                className="mask-fade flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
+                className="mask-fade flex snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden pb-4"
                 data-project-rail
                 data-parallax="-6"
               >
@@ -290,7 +274,7 @@ export async function PortfolioPage() {
                           <h3 className="font-display text-3xl font-extrabold tracking-[-0.05em] sm:text-4xl">
                             {project.projectName}
                           </h3>
-                          <p className="max-w-xl text-base leading-8 text-muted sm:text-lg">
+                          <p className="max-w-xl text-base leading-8 text-muted-strong sm:text-lg">
                             {project.description}
                           </p>
                         </div>
@@ -346,7 +330,7 @@ export async function PortfolioPage() {
                           <h3 className="font-display text-2xl font-extrabold tracking-[-0.05em]">
                             {capability.title}
                           </h3>
-                          <p className="text-base leading-8 text-muted">
+                          <p className="text-base leading-8 text-muted-strong">
                             {capability.description}
                           </p>
                         </div>
@@ -416,7 +400,7 @@ export async function PortfolioPage() {
                     <p className="font-display text-4xl leading-none font-extrabold tracking-[-0.06em] sm:text-5xl">
                       {profile.fullName}
                     </p>
-                    <p className="text-lg leading-8 text-muted">
+                    <p className="text-lg leading-8 text-muted-strong">
                       {profile.location}
                     </p>
                     <div className="space-y-3 text-base">

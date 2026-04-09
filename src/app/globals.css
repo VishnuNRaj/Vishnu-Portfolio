@@ -7,8 +7,8 @@
   --muted-strong: #c8d0ea;
   --card: rgba(17, 25, 43, 0.78);
   --card-strong: rgba(22, 31, 51, 0.92);
-  --line: rgba(110, 117, 136, 0.18);
-  --line-strong: rgba(163, 166, 255, 0.18);
+  --line: rgba(140, 150, 180, 0.18);
+  --line-strong: rgba(163, 166, 255, 0.28);
   --accent: #a3a6ff;
   --accent-strong: #8387ff;
   --accent-soft: rgba(163, 166, 255, 0.12);
@@ -28,8 +28,8 @@
   --muted-strong: #2f3950;
   --card: rgba(255, 255, 255, 0.84);
   --card-strong: rgba(244, 246, 255, 0.96);
-  --line: rgba(65, 72, 89, 0.14);
-  --line-strong: rgba(73, 75, 215, 0.16);
+  --line: rgba(65, 72, 89, 0.18);
+  --line-strong: rgba(73, 75, 215, 0.22);
   --accent: #494bd7;
   --accent-strong: #0f00a4;
   --accent-soft: rgba(131, 135, 255, 0.12);
@@ -133,12 +133,20 @@ button {
 }
 
 .glass-panel {
-  background: linear-gradient(180deg, rgba(27, 38, 59, 0.72) 0%, rgba(17, 25, 43, 0.88) 100%);
-  border-color: var(--line-strong);
+  background: linear-gradient(180deg, rgba(40, 52, 78, 0.68) 0%, rgba(17, 25, 43, 0.85) 100%);
+  border: 1px solid var(--line-strong);
   box-shadow:
     0 24px 80px rgba(2, 6, 23, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(20px);
+}
+
+[data-theme="light"] .glass-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(244, 246, 255, 0.94) 100%);
+  border-color: var(--line-strong);
+  box-shadow: 
+    0 24px 80px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .hero-grid {

@@ -1,4 +1,12 @@
-import { EProjectType, type Education, type Experience, type PortfolioProfile, type Project, type Skill, type SkillGroup } from "@/lib/portfolio/types";
+import {
+  EProjectType,
+  type Education,
+  type Experience,
+  type PortfolioProfile,
+  type Project,
+  type Skill,
+  type SkillGroup,
+} from "@/lib/portfolio/types";
 
 const createdAt = "2026-04-08T00:00:00.000Z";
 
@@ -139,23 +147,26 @@ export const portfolioProfile: PortfolioProfile = {
   ],
 };
 
-export const embeddedSkillGroups: SkillGroup[] = portfolioProfile.skillGroups.map((g, index) => ({
-  id: `group-${g.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
-  title: g.title,
-  order: index,
-  createdAt,
-}));
-
-export const embeddedSkills: Skill[] = portfolioProfile.skillGroups.flatMap((g) => {
-  const groupId = `group-${g.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
-  return g.items.map((name) => ({
-    id: `skill-${name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
-    name,
-    groupId,
-    isHighlighted: false,
+export const embeddedSkillGroups: SkillGroup[] =
+  portfolioProfile.skillGroups.map((g, index) => ({
+    id: `group-${g.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
+    title: g.title,
+    order: index,
     createdAt,
   }));
-});
+
+export const embeddedSkills: Skill[] = portfolioProfile.skillGroups.flatMap(
+  (g) => {
+    const groupId = `group-${g.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
+    return g.items.map((name) => ({
+      id: `skill-${name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
+      name,
+      groupId,
+      isHighlighted: false,
+      createdAt,
+    }));
+  },
+);
 
 export const embeddedExperience: Experience[] = [
   {
@@ -225,7 +236,16 @@ export const embeddedProjects: Project[] = [
     id: "project-xoro",
     projectName: "Xoro",
     projectType: EProjectType.MY_WORKS,
-    stacks: ["Node.js", "Express", "React", "TypeScript", "MongoDB", "Socket.IO", "RTMP", "AWS"],
+    stacks: [
+      "Node.js",
+      "Express",
+      "React",
+      "TypeScript",
+      "MongoDB",
+      "Socket.IO",
+      "RTMP",
+      "AWS",
+    ],
     description:
       "A unified social media live streaming platform supporting uploads, shorts, livestreams, chat, and real-time engagement using a scalable MERN-based architecture.",
     isHighlighted: true,
@@ -250,7 +270,13 @@ export const embeddedProjects: Project[] = [
     id: "project-talktodoc",
     projectName: "TalkToDoc",
     projectType: EProjectType.FREELANCE,
-    stacks: ["Node.js", "NestJS", "PostgreSQL", "Google Meet API", "WhatsApp Business API"],
+    stacks: [
+      "Node.js",
+      "NestJS",
+      "PostgreSQL",
+      "Google Meet API",
+      "WhatsApp Business API",
+    ],
     description:
       "A doctor consultation platform with appointment booking, care plans, real-time sessions, payment flows, and automation integrations.",
     isHighlighted: false,
@@ -262,7 +288,14 @@ export const embeddedProjects: Project[] = [
     id: "project-subscription-platform",
     projectName: "Subscription Platform",
     projectType: EProjectType.FREELANCE,
-    stacks: ["React", "Node.js", "FFmpeg", "AWS S3", "Cashfree", "Cloudflare CDN"],
+    stacks: [
+      "React",
+      "Node.js",
+      "FFmpeg",
+      "AWS S3",
+      "Cashfree",
+      "Cloudflare CDN",
+    ],
     description:
       "A video subscription system with content streaming, moderation pipelines, CDN delivery, and optimized media handling.",
     isHighlighted: false,
@@ -291,8 +324,7 @@ export const embeddedProjects: Project[] = [
       "A blogging platform with authentication, media uploads, and a streamlined content management experience.",
     isHighlighted: false,
     createdAt,
-    impact:
-      "Focused on a clean writing workflow and a polished UI surface.",
+    impact: "Focused on a clean writing workflow and a polished UI surface.",
   },
   {
     id: "project-pagefusion",
@@ -310,7 +342,16 @@ export const embeddedProjects: Project[] = [
     id: "project-pager",
     projectName: "Pager",
     projectType: EProjectType.MY_WORKS,
-    stacks: ["Express", "MongoDB", "Cassandra", "Redis", "gRPC", "Kafka", "WebSocket", "React"],
+    stacks: [
+      "Express",
+      "MongoDB",
+      "Cassandra",
+      "Redis",
+      "gRPC",
+      "Kafka",
+      "WebSocket",
+      "React",
+    ],
     description:
       "A microservices-based encrypted chat application supporting real-time messaging and async communication across distributed services.",
     isHighlighted: false,

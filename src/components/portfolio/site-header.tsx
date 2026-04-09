@@ -46,7 +46,9 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={
+        theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+      }
       className="inline-flex size-11 items-center justify-center rounded-full border border-line-strong bg-card/85 text-foreground hover:-translate-y-0.5 hover:border-accent/60 hover:bg-card-strong hover:text-accent"
     >
       {theme === "dark" ? (
@@ -86,7 +88,11 @@ export function SiteHeader({
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-foreground">
+              <Link
+                key={item.href}
+                href={item.href}
+                className="hover:text-foreground"
+              >
                 {item.label}
               </Link>
             ))}
@@ -98,7 +104,6 @@ export function SiteHeader({
             </Link>
             <button
               type="button"
-              aria-label="Open navigation"
               onClick={() => setOpen(true)}
               className="inline-flex size-11 items-center justify-center rounded-full border border-line-strong bg-card/85 text-foreground md:hidden"
             >
@@ -111,7 +116,9 @@ export function SiteHeader({
       <div
         className={cn(
           "fixed inset-0 z-[60] bg-[#020611]/50 backdrop-blur-sm transition-opacity duration-300 md:hidden",
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+          open
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0",
         )}
         onClick={() => setOpen(false)}
       />
@@ -148,7 +155,7 @@ export function SiteHeader({
         </div>
         <div className="mt-auto space-y-4">
           <Link href={ctaHref} onClick={() => setOpen(false)} className="block">
-            <Button className="w-full justify-center">{ctaLabel}</Button>
+            <Button className={cn("w-full justify-center")}>{ctaLabel}</Button>
           </Link>
         </div>
       </aside>
