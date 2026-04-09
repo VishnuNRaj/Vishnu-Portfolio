@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, ReactNode } from "react";
+import { useEffect, useRef, useState, ReactNode, useCallback } from "react";
 
 interface InfiniteScrollProps<T> {
   initialItems: T[];
@@ -25,21 +25,7 @@ export function InfiniteScroll<T>({
   const observerRef = useRef<HTMLDivElement>(null);
   const totalPagesRef = useRef(totalPages);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMore();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-
-    if (observerRef.current) observer.observe(observerRef.current);
-    return () => observer.disconnect();
-  }, [page, loading]);
-
-  async function loadMore() {
+  const loadMore = useCallback(async () => {
     if (loading || page >= totalPagesRef.current) return;
     
     setLoading(true);
@@ -54,7 +40,25 @@ export function InfiniteScroll<T>({
     } finally {
       setLoading(false);
     }
-  }
+  }, [loading, page, action]);
+
+  useEffect(() => {
+    const currentRef = observerRef.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMore();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    if (currentRef) observer.observe(currentRef);
+    return () => {
+      if (currentRef) observer.unobserve(currentRef);
+      observer.disconnect();
+    };
+  }, [loadMore]);
 
   return (
     <>

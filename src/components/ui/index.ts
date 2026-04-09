@@ -4,4 +4,5 @@ export * from "./icon-link";
 export * from "./section-heading";
 export * from "./surface-card";
 export * from "./infinite-scroll";
+export * from "./sheet";
 

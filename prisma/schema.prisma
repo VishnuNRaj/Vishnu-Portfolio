@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  companyName String
+  from        Int
+  to          Int?
+  description String
+  jobRole     String
+  location    String
+  stacks      Json     @default("[]")
+  createdAt   DateTime @default(now())
+
+  @@map("experiences")
+}
+
+model Project {
+  id            String   @id @default(uuid())
+  companyId     String?
+  projectName   String
+  projectType   String
+  stacks        Json     @default("[]")
+  description   String
+  isHighlighted Boolean  @default(false)
+  impact        String   @default("")
+  href          String?
+  createdAt     DateTime @default(now())
+
+  @@map("projects")
+}
+
+model Education {
+  id          String   @id @default(uuid())
+  collegeName String
+  location    String
+  course      String
+  branch      String
+  from        Int
+  to          Int?
+  createdAt   DateTime @default(now())
+
+  @@map("education")
+}
+
+model Contact {
+  id        String   @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String
+  phone     String
+  reason    String
+  createdAt DateTime @default(now())
+
+  @@map("contacts")
+}
+
+model Skill {
+  id            String   @id @default(uuid())
+  name          String
+  groupId       String
+  icon          String?
+  isHighlighted Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@map("skills")
+}
+
+model SkillGroup {
+  id        String   @id @default(uuid())
+  title     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@map("skill_groups")
+}
+
+model AuthKey {
+  id        String   @id @default(uuid())
+  authKey   String   @unique
+  email     String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  @@map("auth_keys")
+}

@@ -1,4 +1,4 @@
-export * from "./admin-create-forms";
+export * from "./admin-forms";
 export * from "./contact-form";
 export * from "./education-grid";
 export * from "./experience-sidebar";

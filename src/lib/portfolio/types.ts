@@ -52,6 +52,22 @@ export type Contact = {
   createdAt: string;
 };
 
+export type Skill = {
+  id: string;
+  name: string;
+  groupId: string;
+  icon?: string;
+  isHighlighted: boolean;
+  createdAt: string;
+};
+
+export type SkillGroup = {
+  id: string;
+  title: string;
+  order: number;
+  createdAt: string;
+};
+
 export type AuthKey = {
   id: string;
   authKey: string;
@@ -97,3 +113,5 @@ export type CreateExperienceInput = Omit<Experience, "id" | "createdAt">;
 export type CreateProjectInput = Omit<Project, "id" | "createdAt">;
 export type CreateEducationInput = Omit<Education, "id" | "createdAt">;
 export type CreateContactInput = Omit<Contact, "id" | "createdAt">;
+export type CreateSkillInput = Omit<Skill, "id" | "createdAt">;
+export type CreateSkillGroupInput = Omit<SkillGroup, "id" | "createdAt">;

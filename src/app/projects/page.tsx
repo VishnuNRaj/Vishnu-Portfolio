@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ProjectInfiniteList } from "@/components/portfolio";
-import { Button, SectionHeading, SurfaceCard } from "@/components/ui";
+import { Button, SectionHeading } from "@/components/ui";
 import { listProjects } from "@/lib/server";
 
 export default async function ProjectsPage() {

@@ -1,3 +1,4 @@
+import * as LucideIcons from "lucide-react";
 import {
   ArrowRight,
   Cloud,
@@ -5,7 +6,6 @@ import {
   Database,
   Mail,
   Send,
-  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -29,7 +29,10 @@ import {
   listEducation,
   listExperience,
   listProjects,
+  listSkills,
+  listSkillGroups,
 } from "@/lib/server";
+import Image from "next/image";
 
 const capabilityIcons = [Code2, Database, Cloud];
 
@@ -43,9 +46,15 @@ const navItems = [
 
 export async function PortfolioPage() {
   const profile = await getPortfolioProfile();
-  const highlightedProjects = await listProjects(1, 4, { highlightedOnly: true });
+  const highlightedProjects = await listProjects(1, 4, {
+    highlightedOnly: true,
+  });
   const experience = await listExperience(1, 3);
   const education = await listEducation(1, 3);
+  const skills = await listSkills(1, 100);
+  const skillGroups = await listSkillGroups(1, 20);
+
+  const highlightedSkills = skills.items.filter((s) => s.isHighlighted);
 
   return (
     <ScrollScene>
@@ -81,15 +90,17 @@ export async function PortfolioPage() {
                     className="max-w-2xl font-mono text-[11px] uppercase tracking-[0.35em] text-accent"
                     data-stagger-item
                   >
-                    Realtime systems, scalable backend design, and frontend experiences
-                    shaped to feel sharp in production.
+                    Realtime systems, scalable backend design, and frontend
+                    experiences shaped to feel sharp in production.
                   </p>
                   <h1
                     className="max-w-5xl font-display text-[clamp(3.8rem,11vw,8.3rem)] leading-[0.88] font-extrabold tracking-[-0.08em]"
                     data-stagger-item
                   >
                     I build
-                    <span className="text-gradient block">indigo-grade products</span>
+                    <span className="text-gradient block">
+                      indigo-grade products
+                    </span>
                     for teams that need speed and structure.
                   </h1>
                   <p
@@ -99,7 +110,10 @@ export async function PortfolioPage() {
                     {profile.summary}
                   </p>
                 </div>
-                <div className="flex flex-wrap items-center gap-4" data-stagger-item>
+                <div
+                  className="flex flex-wrap items-center gap-4"
+                  data-stagger-item
+                >
                   <Link href="/projects">
                     <Button size="lg">
                       Browse projects
@@ -150,45 +164,78 @@ export async function PortfolioPage() {
                           System profile
                         </p>
                         <p className="mt-2 text-sm text-muted">
-                          Product engineering across backend, realtime, and delivery.
+                          Product engineering across backend, realtime, and
+                          delivery.
                         </p>
                       </div>
                       <span className="rounded-full bg-accent-soft px-3 py-1 font-mono text-[11px] text-accent">
                         {profile.availability}
                       </span>
                     </div>
-                    <div className="hero-squares" aria-hidden="true">
-                      {Array.from({ length: 18 }).map((_, index) => (
-                        <span
-                          key={index}
-                          className="hero-square"
-                          style={{
-                            opacity: index % 5 === 0 ? 1 : 0.82,
-                          }}
-                        />
-                      ))}
-                    </div>
-                    <div className="grid gap-5">
-                      {profile.metrics.map((metric) => (
-                        <div
-                          key={metric.label}
-                          className="border-b border-line pb-5 last:border-b-0"
-                        >
-                          <p className="font-display text-3xl font-extrabold tracking-[-0.05em]">
-                            {metric.value}
-                          </p>
-                          <p className="mt-1 text-sm text-muted">{metric.label}</p>
-                        </div>
-                      ))}
+                    <div className="grid gap-3 mt-6">
+                      {highlightedSkills.length === 0 && (
+                        <p className="text-sm text-muted italic">
+                          Configure highlighted skills in the admin dashboard.
+                        </p>
+                      )}
+                      {highlightedSkills.map((skill) => {
+                        const isUrl = skill.icon?.startsWith("http");
+                        const Icon =
+                          !isUrl && skill.icon
+                            ? (LucideIcons as unknown as Record<string, React.ElementType>)[skill.icon]
+                            : null;
+                        return (
+                          <div
+                            key={skill.id}
+                            className="flex items-center gap-4 border border-line rounded-3xl bg-background/30 p-4"
+                          >
+                            <div className="flex size-10 items-center justify-center rounded-2xl bg-accent-soft text-accent overflow-hidden">
+                              {isUrl ? (
+                                <Image
+                                  src={skill.icon!}
+                                  alt={skill.name}
+                                  fill
+                                  className="object-contain p-2"
+                                />
+                              ) : Icon ? (
+                                <Icon className="size-5" />
+                              ) : (
+                                <Code2 className="size-5" />
+                              )}
+                            </div>
+                            <div>
+                              <p className="font-display text-lg font-bold tracking-[-0.03em] text-foreground">
+                                {skill.name}
+                              </p>
+                              <p className="text-sm text-muted">
+                                {skillGroups.items.find(
+                                  (g) => g.id === skill.groupId,
+                                )?.title || "General"}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                     <div className="flex flex-wrap gap-3">
-                      <IconLink href={profile.githubUrl} label="GitHub" icon={Code2} />
-                      <IconLink href={profile.linkedinUrl} label="LinkedIn" icon={Send} />
-                      <IconLink href={`mailto:${profile.email}`} label="Email" icon={Mail} />
+                      <IconLink
+                        href={profile.githubUrl}
+                        label="GitHub"
+                        icon={Code2}
+                      />
+                      <IconLink
+                        href={profile.linkedinUrl}
+                        label="LinkedIn"
+                        icon={Send}
+                      />
+                      <IconLink
+                        href={`mailto:${profile.email}`}
+                        label="Email"
+                        icon={Mail}
+                      />
                     </div>
                   </div>
                 </SurfaceCard>
-
               </div>
             </div>
           </section>
@@ -208,13 +255,14 @@ export async function PortfolioPage() {
               >
                 <p data-stagger-item>
                   I work across modern JavaScript ecosystems with a strong lean
-                  toward Node.js backends, scalable APIs, and platform thinking that
-                  keeps features maintainable after launch.
+                  toward Node.js backends, scalable APIs, and platform thinking
+                  that keeps features maintainable after launch.
                 </p>
                 <p data-stagger-item>
-                  My portfolio spans commerce, creator systems, consultation products,
-                  encrypted communication, and realtime video experiences with a focus
-                  on shipping quickly without losing system clarity.
+                  My portfolio spans commerce, creator systems, consultation
+                  products, encrypted communication, and realtime video
+                  experiences with a focus on shipping quickly without losing
+                  system clarity.
                 </p>
               </div>
             </div>
@@ -347,7 +395,10 @@ export async function PortfolioPage() {
                 title="I am proficient across a wide stack of modern technologies."
                 description="Grouped across core expertise, languages, frontend, backend, realtime systems, payments, infrastructure, and tooling."
               />
-              <SkillGroupsGrid groups={profile.skillGroups} />
+              <SkillGroupsGrid
+                groups={skillGroups.items}
+                skills={skills.items}
+              />
             </div>
           </section>
 
@@ -368,7 +419,9 @@ export async function PortfolioPage() {
                     <p className="font-display text-4xl leading-none font-extrabold tracking-[-0.06em] sm:text-5xl">
                       {profile.fullName}
                     </p>
-                    <p className="text-lg leading-8 text-muted">{profile.location}</p>
+                    <p className="text-lg leading-8 text-muted">
+                      {profile.location}
+                    </p>
                     <div className="space-y-3 text-base">
                       <Link
                         href={`mailto:${profile.email}`}
@@ -379,8 +432,16 @@ export async function PortfolioPage() {
                       <p>{profile.phone}</p>
                     </div>
                     <div className="flex flex-wrap gap-3">
-                      <IconLink href={profile.githubUrl} label="GitHub" icon={Code2} />
-                      <IconLink href={profile.linkedinUrl} label="LinkedIn" icon={Send} />
+                      <IconLink
+                        href={profile.githubUrl}
+                        label="GitHub"
+                        icon={Code2}
+                      />
+                      <IconLink
+                        href={profile.linkedinUrl}
+                        label="LinkedIn"
+                        icon={Send}
+                      />
                     </div>
                   </div>
                 </SurfaceCard>

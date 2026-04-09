@@ -1,4 +1,4 @@
-import { EProjectType, type Education, type Experience, type PortfolioProfile, type Project } from "@/lib/portfolio/types";
+import { EProjectType, type Education, type Experience, type PortfolioProfile, type Project, type Skill, type SkillGroup } from "@/lib/portfolio/types";
 
 const createdAt = "2026-04-08T00:00:00.000Z";
 
@@ -138,6 +138,24 @@ export const portfolioProfile: PortfolioProfile = {
     },
   ],
 };
+
+export const embeddedSkillGroups: SkillGroup[] = portfolioProfile.skillGroups.map((g, index) => ({
+  id: `group-${g.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
+  title: g.title,
+  order: index,
+  createdAt,
+}));
+
+export const embeddedSkills: Skill[] = portfolioProfile.skillGroups.flatMap((g) => {
+  const groupId = `group-${g.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
+  return g.items.map((name) => ({
+    id: `skill-${name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
+    name,
+    groupId,
+    isHighlighted: false,
+    createdAt,
+  }));
+});
 
 export const embeddedExperience: Experience[] = [
   {
