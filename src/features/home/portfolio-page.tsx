@@ -1,12 +1,5 @@
 import * as LucideIcons from "lucide-react";
-import {
-  ArrowRight,
-  Cloud,
-  Code2,
-  Database,
-  Mail,
-  Send,
-} from "lucide-react";
+import { ArrowRight, Cloud, Code2, Database, Mail, Send } from "lucide-react";
 import Link from "next/link";
 
 import { ScrollScene } from "@/components/motion";
@@ -182,7 +175,12 @@ export async function PortfolioPage() {
                         const isUrl = skill.icon?.startsWith("http");
                         const Icon =
                           !isUrl && skill.icon
-                            ? (LucideIcons as unknown as Record<string, React.ElementType>)[skill.icon]
+                            ? (
+                                LucideIcons as unknown as Record<
+                                  string,
+                                  React.ElementType
+                                >
+                              )[skill.icon]
                             : null;
                         return (
                           <div
@@ -191,10 +189,9 @@ export async function PortfolioPage() {
                           >
                             <div className="flex size-10 items-center justify-center rounded-2xl bg-accent-soft text-accent overflow-hidden">
                               {isUrl ? (
-                                <Image
+                                <img
                                   src={skill.icon!}
                                   alt={skill.name}
-                                  fill
                                   className="object-contain p-2"
                                 />
                               ) : Icon ? (
